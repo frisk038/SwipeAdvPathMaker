@@ -5,8 +5,6 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton,
 from PyQt5.QtWidgets import (QApplication, QGraphicsView, QGraphicsScene,
                              QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton)
 from PyQt5.QtWebEngineWidgets import *
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPainter
 
 from GraphWiew import *
 from Path import *
@@ -109,7 +107,10 @@ def createNewPathLayout(vLayout1):
     crtbtn.clicked.connect(on_create_click)
     vLayout1.addWidget(crtbtn)
 
-    return PathLayout(imgpath, description, index, left, up, right, down, crtbtn, special, life, atk, vname, avatar, ltxt, utxt, rtxt, dtxt)
+    return PathLayout(imgpath, description, index,
+                      left, up, right, down, crtbtn,
+                      special, life, atk, vname, avatar,
+                      ltxt, utxt, rtxt, dtxt)
 
 
 def createGraphViewLayout(vLayout2):

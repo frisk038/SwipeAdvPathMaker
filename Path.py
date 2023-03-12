@@ -17,7 +17,10 @@ class PathLayout():
     rtxt = None
     dtxt = None
 
-    def __init__(self, imgpath, description, index, left, up, right, down, crtbtn, special, life, atk, vname, avatar, ltxt, utxt, rtxt, dtxt):
+    def __init__(self, imgpath, description, index,
+                 left, up, right, down, crtbtn, special,
+                 life, atk, vname, avatar, ltxt, utxt,
+                 rtxt, dtxt):
         self.imgpath = imgpath
         self.description = description
         self.index = index
@@ -73,7 +76,9 @@ class Path():
     rtxt = ""
     dtxt = ""
 
-    def __init__(self, imgpath, description, index, left, up, right, down, special, life, atk, vname, avatar, ltxt, utxt, rtxt, dtxt):
+    def __init__(self, imgpath, description, index,
+                 left, up, right, down, special, life,
+                 atk, vname, avatar, ltxt, utxt, rtxt, dtxt):
         self.imgpath = imgpath
         self.description = description
         self.index = index
