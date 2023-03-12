@@ -130,6 +130,7 @@ class GraphWiew(QGraphicsView):
             "rt": newPath.rtxt,
             "dt": newPath.dtxt
         }
+        print(self.jsondt)
         self.jsondt.append(node)
         with open('path.json', 'w') as outfile:
             json.dump(self.jsondt, outfile, indent=4, ensure_ascii=False)
