@@ -1,3 +1,4 @@
+import time
 from PyQt5.QtWidgets import (QGraphicsView, QGraphicsScene)
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtCore import Qt
@@ -70,11 +71,11 @@ class GraphWiew(QGraphicsView):
                                                        node['rt'], node['dt']), self.newPathLayout)
 
     def clear(self):
-        for edge in self.edges:
-            self.scene().removeItem(edge)
-            self.edges.clear()
+        self.edges.clear()
         for node in self.nodes:
             self.nodes[node].edges.clear()
+        self.scene().clear()
+        self.nodes.clear()
 
     def loadNetwork(self):
         with open('path.json', 'r') as f:
@@ -109,6 +110,13 @@ class GraphWiew(QGraphicsView):
         self.newPathLayout.clearForm()
         super().mousePressEvent(event)
 
+    def updateJSONData(self, newNode):
+        for i in range(len(self.jsondt)):
+            if self.jsondt[i]["i"] == newNode["i"]:
+                self.jsondt[i] = newNode
+                return
+        self.jsondt.append(newNode)
+
     def addNode(self, newPath):
         node = {
             "i": int(newPath.index),
@@ -130,9 +138,12 @@ class GraphWiew(QGraphicsView):
             "rt": newPath.rtxt,
             "dt": newPath.dtxt
         }
-        print(self.jsondt)
-        self.jsondt.append(node)
+
+        self.updateJSONData(node)
         with open('path.json', 'w') as outfile:
             json.dump(self.jsondt, outfile, indent=4, ensure_ascii=False)
+
+        print(self.jsondt[0]['d'])
+
         self.loadNetwork()
         self.loadNetworkLayout()
