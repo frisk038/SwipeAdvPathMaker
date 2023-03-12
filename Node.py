@@ -15,18 +15,18 @@ class NodeText(QGraphicsTextItem):
 
 
 class Node(QGraphicsItem):
-    selectInfo = None
+    newPathLayout = None
     edges = []
 
-    def __init__(self, label, scene, description, selectInfo):
+    def __init__(self, label, scene, path, newPathLayout):
         super(Node, self).__init__()
         self.setFlag(QGraphicsItem.ItemIsMovable)
         self.setFlag(QGraphicsItem.ItemSendsGeometryChanges)
         self.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
         self.setZValue(-1)
         self.ndtxt = NodeText(label, self)
-        self.description = description
-        self.selectInfo = selectInfo
+        self.path = path
+        self.newPathLayout = newPathLayout
         scene.addItem(self)
 
     def addEdge(self, edge):
@@ -60,7 +60,24 @@ class Node(QGraphicsItem):
         return path
 
     def mousePressEvent(self, event):
-        self.selectInfo.setText(self.description)
+        self.newPathLayout.imgpath.setText(self.path.imgpath)
+        self.newPathLayout.description.setText(self.path.description)
+        self.newPathLayout.index.setText(str(self.path.index))
+        self.newPathLayout.left.setText(str(self.path.left))
+        self.newPathLayout.up.setText(str(self.path.up))
+        self.newPathLayout.right.setText(str(self.path.right))
+        self.newPathLayout.down.setText(str(self.path.down))
+        self.newPathLayout.life.setText(str(self.path.life))
+        self.newPathLayout.atk.setText(str(self.path.atk))
+        self.newPathLayout.vname.setText(self.path.vname)
+        self.newPathLayout.avatar.setText(self.path.avatar)
+        self.newPathLayout.ltxt.setText(self.path.ltxt)
+        self.newPathLayout.utxt.setText(self.path.utxt)
+        self.newPathLayout.rtxt.setText(self.path.rtxt)
+        self.newPathLayout.dtxt.setText(self.path.dtxt)
+        self.newPathLayout.special.setCurrentIndex(
+            self.newPathLayout.special.findText(self.path.special))
+
         self.update()
         super().mousePressEvent(event)
 

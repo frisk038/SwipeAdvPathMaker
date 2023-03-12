@@ -12,13 +12,13 @@ class GraphWiew(QGraphicsView):
     nodes = {}
     edges = []
     jsondt = []
+    newPathLayout = None
 
-    def __init__(self, selectInfo):
+    def __init__(self, newPathLayout):
         super(GraphWiew, self).__init__()
-
         scene = QGraphicsScene(self)
         self.setScene(scene)
-        self.selectInfo = selectInfo
+        self.newPathLayout = newPathLayout
         self.setCacheMode(QGraphicsView.CacheBackground)
         self.setSceneRect(0, 0, 2000, 2000)
         self.setViewportUpdateMode(QGraphicsView.BoundingRectViewportUpdate)
@@ -63,7 +63,11 @@ class GraphWiew(QGraphicsView):
         for node in self.jsondt:
             if node['i'] not in self.nodes:
                 self.nodes[node['i']] = Node(
-                    str(node['i']), self.scene(), node['d'], self.selectInfo)
+                    str(node['i']), self.scene(), Path(node['a'], node['d'], node['i'],
+                                                       node['p'][0], node['p'][1], node['p'][2], node['p'][3],
+                                                       node['s'], node['l'], node['k'],
+                                                       node['n'], node['v'], node['lt'], node['ut'],
+                                                       node['rt'], node['dt']), self.newPathLayout)
 
     def clear(self):
         for edge in self.edges:
@@ -100,6 +104,10 @@ class GraphWiew(QGraphicsView):
                     line = fp.readline().rstrip()
         except:
             pass
+
+    def mousePressEvent(self, event):
+        self.newPathLayout.clearForm()
+        super().mousePressEvent(event)
 
     def addNode(self, newPath):
         node = {

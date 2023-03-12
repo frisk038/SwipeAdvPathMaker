@@ -116,7 +116,7 @@ def createNewPathLayout(vLayout1):
 def createGraphViewLayout(vLayout2):
     selectInfo = QLabel('...')
     selectInfo.setWordWrap(True)
-    a = GraphWiew(selectInfo)
+    a = GraphWiew(newPathLayout)
     vLayout2.addWidget(a)
     vLayout2.addWidget(selectInfo)
     hLayout2 = QHBoxLayout()
@@ -130,31 +130,13 @@ def createGraphViewLayout(vLayout2):
     return a
 
 
-def clearForm():
-    newPathLayout.index.clear()
-    newPathLayout.description.clear()
-    newPathLayout.imgpath.clear()
-    newPathLayout.left.clear()
-    newPathLayout.up.clear()
-    newPathLayout.right.clear()
-    newPathLayout.down.clear()
-    newPathLayout.ltxt.clear()
-    newPathLayout.utxt.clear()
-    newPathLayout.rtxt.clear()
-    newPathLayout.dtxt.clear()
-    newPathLayout.life.setText("0")
-    newPathLayout.atk.setText("0")
-    newPathLayout.vname.setText("_")
-    newPathLayout.avatar.setText("_")
-
-
 def on_create_click():
     if len(newPathLayout.index.text()) > 0 and len(newPathLayout.description.toPlainText()) > 0 \
             and len(newPathLayout.imgpath.text()) > 0 and len(newPathLayout.left.text()) > 0 \
             and len(newPathLayout.up.text()) > 0 and len(newPathLayout.right.text()) > 0 \
             and len(newPathLayout.down.text()) > 0:
         graph.addNode(newPathLayout.toPath())
-        clearForm()
+        newPathLayout.clearForm()
     else:
         print('Error : some fields are missing')
 

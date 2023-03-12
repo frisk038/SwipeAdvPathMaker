@@ -39,6 +39,24 @@ class PathLayout():
         self.rtxt = rtxt
         self.dtxt = dtxt
 
+    def clearForm(self):
+        self.index.clear()
+        self.description.clear()
+        self.imgpath.clear()
+        self.left.clear()
+        self.up.clear()
+        self.right.clear()
+        self.down.clear()
+        self.ltxt.clear()
+        self.utxt.clear()
+        self.rtxt.clear()
+        self.dtxt.clear()
+        self.life.setText("0")
+        self.atk.setText("0")
+        self.vname.setText("_")
+        self.avatar.setText("_")
+        self.special.setCurrentIndex(0)
+
     def toPath(self):
         return Path(self.imgpath.text(),
                     self.description.toPlainText(),
