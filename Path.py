@@ -59,7 +59,7 @@ class PathLayout():
 
     def toPath(self):
         return Path(self.imgpath.text(),
-                    self.description.toPlainText(),
+                    "[center]%s[/center]" % self.description.toPlainText(),
                     self.index.text(),
                     self.left.text(),
                     self.up.text(),
@@ -70,10 +70,10 @@ class PathLayout():
                     self.atk.text(),
                     self.vname.text(),
                     self.avatar.text(),
-                    self.ltxt.text(),
-                    self.utxt.text(),
-                    self.rtxt.text(),
-                    self.dtxt.text())
+                    "[center]%s[/center]" % self.ltxt.text(),
+                    "[center]%s[/center]" % self.utxt.text(),
+                    "[center]%s[/center]" % self.rtxt.text(),
+                    "[center]%s[/center]" % self.dtxt.text())
 
 
 class Path():
