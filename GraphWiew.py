@@ -67,7 +67,7 @@ class GraphWiew(QGraphicsView):
                     str(node['i']), self.scene(), Path(node['a'], node['d'], node['i'],
                                                        node['p'][0], node['p'][1], node['p'][2], node['p'][3],
                                                        node['s'], node['l'], node['k'],
-                                                       node['n'], node['v'], node['lt'], node['ut'],
+                                                       node['n'], node['lt'], node['ut'],
                                                        node['rt'], node['dt']), self.newPathLayout)
 
     def clear(self):

@@ -70,7 +70,6 @@ class Node(QGraphicsItem):
         self.newPathLayout.life.setText(str(self.path.life))
         self.newPathLayout.atk.setText(str(self.path.atk))
         self.newPathLayout.vname.setText(self.path.vname)
-        self.newPathLayout.avatar.setText(self.path.avatar)
         self.newPathLayout.ltxt.setText(self.path.ltxt)
         self.newPathLayout.utxt.setText(self.path.utxt)
         self.newPathLayout.rtxt.setText(self.path.rtxt)
