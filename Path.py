@@ -11,7 +11,6 @@ class PathLayout():
     life = None
     atk = None
     vname = None
-    avatar = None
     ltxt = None
     utxt = None
     rtxt = None
@@ -19,7 +18,7 @@ class PathLayout():
 
     def __init__(self, imgpath, description, index,
                  left, up, right, down, crtbtn, special,
-                 life, atk, vname, avatar, ltxt, utxt,
+                 life, atk, vname, ltxt, utxt,
                  rtxt, dtxt):
         self.imgpath = imgpath
         self.description = description
@@ -33,7 +32,6 @@ class PathLayout():
         self.life = life
         self.atk = atk
         self.vname = vname
-        self.avatar = avatar
         self.ltxt = ltxt
         self.utxt = utxt
         self.rtxt = rtxt
@@ -54,7 +52,6 @@ class PathLayout():
         self.life.setText("0")
         self.atk.setText("0")
         self.vname.setText("_")
-        self.avatar.setText("_")
         self.special.setCurrentIndex(0)
 
     def toPath(self):
@@ -69,7 +66,6 @@ class PathLayout():
                     self.life.text(),
                     self.atk.text(),
                     self.vname.text(),
-                    self.avatar.text(),
                     "[center]%s[/center]" % self.ltxt.text(),
                     "[center]%s[/center]" % self.utxt.text(),
                     "[center]%s[/center]" % self.rtxt.text(),
@@ -88,7 +84,6 @@ class Path():
     life = ""
     atk = ""
     vname = ""
-    avatar = ""
     ltxt = ""
     utxt = ""
     rtxt = ""
@@ -96,7 +91,7 @@ class Path():
 
     def __init__(self, imgpath, description, index,
                  left, up, right, down, special, life,
-                 atk, vname, avatar, ltxt, utxt, rtxt, dtxt):
+                 atk, vname, ltxt, utxt, rtxt, dtxt):
         self.imgpath = imgpath
         self.description = description
         self.index = index
@@ -108,7 +103,6 @@ class Path():
         self.life = life
         self.atk = atk
         self.vname = vname
-        self.avatar = avatar
         self.ltxt = ltxt
         self.utxt = utxt
         self.rtxt = rtxt

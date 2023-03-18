@@ -45,7 +45,6 @@ def createNewPathLayout(vLayout1):
     special.addItem("Luck")
     special.addItem("Combat")
     vname = QLineEdit('_')
-    avatar = QLineEdit('_')
     life = QLineEdit('0')
     atk = QLineEdit('0')
     hLayout1.addWidget(QLabel('Left'))
@@ -89,11 +88,6 @@ def createNewPathLayout(vLayout1):
     vLayout1.addLayout(po)
 
     po = QHBoxLayout()
-    po.addWidget(QLabel("Avatar"))
-    po.addWidget(avatar)
-    vLayout1.addLayout(po)
-
-    po = QHBoxLayout()
     po.addWidget(QLabel("Life"))
     po.addWidget(life)
     vLayout1.addLayout(po)
@@ -109,7 +103,7 @@ def createNewPathLayout(vLayout1):
 
     return PathLayout(imgpath, description, index,
                       left, up, right, down, crtbtn,
-                      special, life, atk, vname, avatar,
+                      special, life, atk, vname,
                       ltxt, utxt, rtxt, dtxt)
 
 

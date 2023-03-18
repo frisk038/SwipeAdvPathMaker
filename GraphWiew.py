@@ -131,7 +131,6 @@ class GraphWiew(QGraphicsView):
             "s": newPath.special,
             "l": int(newPath.life),
             "k": int(newPath.atk),
-            "v": newPath.avatar,
             "n": newPath.vname,
             "lt": newPath.ltxt,
             "ut": newPath.utxt,
