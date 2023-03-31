@@ -15,11 +15,12 @@ class PathLayout():
     utxt = None
     rtxt = None
     dtxt = None
+    location = None
 
     def __init__(self, imgpath, description, index,
                  left, up, right, down, crtbtn, special,
                  life, atk, vname, ltxt, utxt,
-                 rtxt, dtxt):
+                 rtxt, dtxt, location):
         self.imgpath = imgpath
         self.description = description
         self.index = index
@@ -36,6 +37,7 @@ class PathLayout():
         self.utxt = utxt
         self.rtxt = rtxt
         self.dtxt = dtxt
+        self.location = location
 
     def clearForm(self):
         self.index.clear()
@@ -53,6 +55,7 @@ class PathLayout():
         self.atk.setText("0")
         self.vname.setText("_")
         self.special.setCurrentIndex(0)
+        self.location.clear()
 
     def toPath(self):
         return Path(self.imgpath.text(),
@@ -69,7 +72,8 @@ class PathLayout():
                     "[center]%s[/center]" % self.ltxt.text(),
                     "[center]%s[/center]" % self.utxt.text(),
                     "[center]%s[/center]" % self.rtxt.text(),
-                    "[center]%s[/center]" % self.dtxt.text())
+                    "[center]%s[/center]" % self.dtxt.text(),
+                    self.location.text())
 
 
 class Path():
@@ -88,10 +92,11 @@ class Path():
     utxt = ""
     rtxt = ""
     dtxt = ""
+    location = ""
 
     def __init__(self, imgpath, description, index,
                  left, up, right, down, special, life,
-                 atk, vname, ltxt, utxt, rtxt, dtxt):
+                 atk, vname, ltxt, utxt, rtxt, dtxt, loc):
         self.imgpath = imgpath
         self.description = description
         self.index = index
@@ -107,3 +112,4 @@ class Path():
         self.utxt = utxt
         self.rtxt = rtxt
         self.dtxt = dtxt
+        self.location = loc

@@ -29,8 +29,8 @@ class GraphWiew(QGraphicsView):
         try:
             self.loadNetwork()
             self.loadNetworkLayout()
-        except:
-            pass
+        except Exception as e:
+            print('fail to load graph view' + str(e))
 
     def loadEdges(self):
         for node in self.jsondt:
@@ -38,27 +38,27 @@ class GraphWiew(QGraphicsView):
                 if node['p'][0] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][0]], self.scene()))
-            except:
-                pass
+            except Exception as e:
+                print(e)
 
             try:
                 if node['p'][1] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][1]], self.scene()))
-            except:
-                pass
+            except Exception as e:
+                print(e)
             try:
                 if node['p'][2] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][2]], self.scene()))
-            except:
-                pass
+            except Exception as e:
+                print(e)
             try:
                 if node['p'][3] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][3]], self.scene()))
-            except:
-                pass
+            except Exception as e:
+                print(e)
 
     def loadNodes(self):
         for node in self.jsondt:
@@ -68,7 +68,7 @@ class GraphWiew(QGraphicsView):
                                                        node['p'][0], node['p'][1], node['p'][2], node['p'][3],
                                                        node['s'], node['l'], node['k'],
                                                        node['n'], node['lt'], node['ut'],
-                                                       node['rt'], node['dt']), self.newPathLayout)
+                                                       node['rt'], node['dt'], node['loc']), self.newPathLayout)
 
     def clear(self):
         self.edges.clear()
@@ -103,8 +103,8 @@ class GraphWiew(QGraphicsView):
                     self.nodes[int(saved[0])].setPos(
                         float(saved[2]), float(saved[3]))
                     line = fp.readline().rstrip()
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
     def mousePressEvent(self, event):
         self.newPathLayout.clearForm()
@@ -135,7 +135,8 @@ class GraphWiew(QGraphicsView):
             "lt": newPath.ltxt,
             "ut": newPath.utxt,
             "rt": newPath.rtxt,
-            "dt": newPath.dtxt
+            "dt": newPath.dtxt,
+            "loc": newPath.location
         }
 
         self.updateJSONData(node)

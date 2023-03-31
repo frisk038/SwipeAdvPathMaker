@@ -46,6 +46,7 @@ def createNewPathLayout(vLayout1):
     special.addItem("Combat")
     vname = QLineEdit('_')
     life = QLineEdit('0')
+    loc = QLineEdit('')
     atk = QLineEdit('0')
     hLayout1.addWidget(QLabel('Left'))
     hLayout1.addWidget(left)
@@ -97,6 +98,11 @@ def createNewPathLayout(vLayout1):
     po.addWidget(atk)
     vLayout1.addLayout(po)
 
+    po = QHBoxLayout()
+    po.addWidget(QLabel("Location"))
+    po.addWidget(loc)
+    vLayout1.addLayout(po)
+
     crtbtn = QPushButton('Add')
     crtbtn.clicked.connect(on_create_click)
     vLayout1.addWidget(crtbtn)
@@ -104,7 +110,7 @@ def createNewPathLayout(vLayout1):
     return PathLayout(imgpath, description, index,
                       left, up, right, down, crtbtn,
                       special, life, atk, vname,
-                      ltxt, utxt, rtxt, dtxt)
+                      ltxt, utxt, rtxt, dtxt, loc)
 
 
 def createGraphViewLayout(vLayout2):

@@ -74,6 +74,7 @@ class Node(QGraphicsItem):
         self.newPathLayout.utxt.setText(self.path.utxt)
         self.newPathLayout.rtxt.setText(self.path.rtxt)
         self.newPathLayout.dtxt.setText(self.path.dtxt)
+        self.newPathLayout.location.setText(self.path.location)
         self.newPathLayout.special.setCurrentIndex(
             self.newPathLayout.special.findText(self.path.special))
 
