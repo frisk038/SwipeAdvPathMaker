@@ -1,4 +1,5 @@
 import time
+import re
 from PyQt5.QtWidgets import (QGraphicsView, QGraphicsScene)
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtCore import Qt
@@ -39,36 +40,39 @@ class GraphWiew(QGraphicsView):
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][0]], self.scene()))
             except Exception as e:
-                print(e)
+                pass
 
             try:
                 if node['p'][1] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][1]], self.scene()))
             except Exception as e:
-                print(e)
+                pass
             try:
                 if node['p'][2] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][2]], self.scene()))
             except Exception as e:
-                print(e)
+                pass
             try:
                 if node['p'][3] in self.nodes:
                     self.edges.append(
                         Edge(self.nodes[node['i']], self.nodes[node['p'][3]], self.scene()))
             except Exception as e:
-                print(e)
+                pass
 
     def loadNodes(self):
+        prog = re.compile(r"(?<=center\])(.*?)(?=\[\/center)")
         for node in self.jsondt:
             if node['i'] not in self.nodes:
                 self.nodes[node['i']] = Node(
-                    str(node['i']), self.scene(), Path(node['a'], node['d'], node['i'],
+                    str(node['i']), self.scene(), Path(node['a'], prog.search(node['d']).group(0), node['i'],
                                                        node['p'][0], node['p'][1], node['p'][2], node['p'][3],
                                                        node['s'], node['l'], node['k'],
-                                                       node['n'], node['lt'], node['ut'],
-                                                       node['rt'], node['dt'], node['loc']), self.newPathLayout)
+                                                       node['n'], prog.search(node['lt']).group(
+                                                           0), prog.search(node['ut']).group(0),
+                                                       prog.search(node['rt']).group(0), prog.search(node['dt']).group(0), node['loc']),
+                    self.newPathLayout)
 
     def clear(self):
         self.edges.clear()
@@ -142,8 +146,5 @@ class GraphWiew(QGraphicsView):
         self.updateJSONData(node)
         with open('path.json', 'w') as outfile:
             json.dump(self.jsondt, outfile, indent=4, ensure_ascii=False)
-
-        print(self.jsondt[0]['d'])
-
         self.loadNetwork()
         self.loadNetworkLayout()
