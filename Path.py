@@ -58,8 +58,12 @@ class PathLayout():
         self.location.clear()
 
     def toPath(self):
+        desc = self.description.toPlainText()
+        if self.special.currentText() != "Combat":
+            print(self.special.currentIndex())
+            desc = "[center]%s[/center]" % self.description.toPlainText()
         return Path(self.imgpath.text(),
-                    "[center]%s[/center]" % self.description.toPlainText(),
+                    desc,
                     self.index.text(),
                     self.left.text(),
                     self.up.text(),

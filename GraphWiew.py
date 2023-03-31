@@ -65,8 +65,12 @@ class GraphWiew(QGraphicsView):
         prog = re.compile(r"(?<=center\])(.*?)(?=\[\/center)")
         for node in self.jsondt:
             if node['i'] not in self.nodes:
+                desc = node['d']
+                res = prog.search(node['d'])
+                if res:
+                    desc = res.group(0)
                 self.nodes[node['i']] = Node(
-                    str(node['i']), self.scene(), Path(node['a'], prog.search(node['d']).group(0), node['i'],
+                    str(node['i']), self.scene(), Path(node['a'], desc, node['i'],
                                                        node['p'][0], node['p'][1], node['p'][2], node['p'][3],
                                                        node['s'], node['l'], node['k'],
                                                        node['n'], prog.search(node['lt']).group(
